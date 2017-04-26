@@ -17,9 +17,9 @@ dependencies:
     - docker build -t $DOCKER_BLD_TAG .
 
 
-test:
-  post:
-    - curl -i -H "Authorization: token=$DCOS_JWT" https://ops.dcostest.waldo.photos/service/marathon/v2/apps/$APP_NAME
+#test:
+#  post:
+#    - curl -i -H "Authorization: token=$DCOS_JWT" https://ops.dcostest.waldo.photos/service/marathon/v2/apps/$APP_NAME
 
 
 
