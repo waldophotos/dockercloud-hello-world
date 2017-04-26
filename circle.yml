@@ -1,0 +1,28 @@
+machine:
+  environment:
+    APP_NAME: $CIRCLE_PROJECT_REPONAME
+    TAG: ${CIRCLE_BUILD_NUM}_$CIRCLE_SHA1
+    TEMPLATE_KEY: $APP_NAME/$TAG
+    DOCKER_REG_URL: docker-registry.devops.waldo.photos
+    DOCKER_BLD_TAG: $DOCKER_REG_URL/$APP_NAME:$TAG
+  services:
+    - docker
+
+
+dependencies:
+  pre:
+    - sudo pip install docker-compose
+    - sudo apt-get update;
+    - docker version
+    - docker build -t $DOCKER_BLD_TAG .
+
+
+deployment:
+  dev:
+    branch: master
+    commands:
+      - yes | docker login -u $DEVOPS_DOCKER_USER -p $DEVOPS_DOCKER_PASS $DOCKER_REG_URL
+      - docker push $DOCKER_BLD_TAG
+      - echo "Pushed $DOCKER_BLD_TAG"
+
+
