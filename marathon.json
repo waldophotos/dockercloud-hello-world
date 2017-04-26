@@ -1,0 +1,33 @@
+{
+  "id": "hello-world",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "docker-registry.devops.waldo.photos/hello-world:<TAG>",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "hostPort": 0, "containerPort": 80 }
+      ],
+      "forcePullImage":true
+    }
+  },
+  "instances": 2,
+  "cpus": 0.1,
+  "mem": 128,
+  "healthChecks": [{
+      "protocol": "HTTP",
+      "path": "/",
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "gracePeriodSeconds": 10,
+      "intervalSeconds": 2,
+      "maxConsecutiveFailures": 10
+  }],
+  "labels":{
+    "HAPROXY_GROUP":"external",
+    "HAPROXY_0_VHOST":"hello-world.dcostest.waldo.photos"
+  }
+  "uris": [
+    "file:///etc/docker.tar.gz"
+  ]
+}

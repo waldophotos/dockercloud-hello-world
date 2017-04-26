@@ -24,5 +24,7 @@ deployment:
       - yes | docker login -u $DEVOPS_DOCKER_USER -p $DEVOPS_DOCKER_PASS $DOCKER_REG_URL
       - docker push $DOCKER_BLD_TAG
       - echo "Pushed $DOCKER_BLD_TAG"
+      - ./deploy.sh $TAG $DCOS_JWT
+      - echo "Deployed $DOCKER_BLD_TAG"
 
 
