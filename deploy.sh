@@ -7,5 +7,5 @@ JWT=$2
 
 APP_ID=$3
 
-curl -X PUT -i -H "Authorization: token=$JWT" -H 'Content-Type: application/json' -d "$(sed 's/<TAG>/$TAG/' marathon.json)" https://ops.dcostest.waldo.photos/service/marathon/v2/apps/$APP_ID
+curl -i -H 'Authorization: token=$JWT' -H 'Content-Type: application/json' -d "$(sed 's/<TAG>/$TAG/' marathon.json)" -X PUT https://ops.dcostest.waldo.photos/service/marathon/v2/apps/$APP_ID
 
