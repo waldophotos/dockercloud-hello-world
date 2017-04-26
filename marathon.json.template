@@ -1,9 +1,9 @@
 {
-  "id": "hello-world",
+  "id": "<APP_NAME>",
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "docker-registry.devops.waldo.photos/hello-world:<TAG>",
+      "image": "docker-registry.devops.waldo.photos/<APP_NAME>:<TAG>",
       "network": "BRIDGE",
       "portMappings": [
         { "hostPort": 0, "containerPort": 80 }
@@ -25,7 +25,7 @@
   }],
   "labels":{
     "HAPROXY_GROUP":"external",
-    "HAPROXY_0_VHOST":"hello-world.dcostest.waldo.photos"
+    "HAPROXY_0_VHOST":"<APP_NAME>.dcostest.waldo.photos"
   },
   "uris": [
     "file:///etc/docker.tar.gz"
